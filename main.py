@@ -1,23 +1,27 @@
 import time
+import asyncio
 
-def task_1():
+async def task_1():
     print('Task 1 started')
-    time.sleep(2)
+    await asyncio.sleep(2)
     print('Task 1 completed')
+    return "Task 1 Done"
 
-def task_2():
+async def task_2():
     print('Task 2 started')
-    time.sleep(2)
+    await asyncio.sleep(2)
     print('Task 2 completed')
+    return "Task 2 Done"
 
 
-def main():
+async def main():
     start = time.time()
-    task_1()
-    task_2()
+    batch = asyncio.gather(task_1(), task_2())
+    result_task_1, result_task_2 = await batch
     end = time.time()
     time_elapsed = end - start
     print('Time elapsed: ' + str(time_elapsed))
 
+
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
