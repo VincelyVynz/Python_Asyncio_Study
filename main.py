@@ -16,8 +16,7 @@ async def task_2():
 
 async def main():
     start = time.time()
-    batch = asyncio.gather(task_1(), task_2())
-    result_task_1, result_task_2 = await batch
+    await asyncio.gather(task_1(), task_2())
     end = time.time()
     time_elapsed = end - start
     print('Time elapsed: ' + str(time_elapsed))
